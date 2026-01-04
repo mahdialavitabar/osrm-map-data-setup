@@ -4,7 +4,7 @@
   "description": "Interactive CLI tool to download and process OpenStreetMap data for OSRM routing services",
   "main": "index.js",
   "bin": {
-    "osrm-setup": "./bin/osrm-setup.js"
+    "osrm-setup": "bin/osrm-setup.js"
   },
   "scripts": {
     "test": "bash test.sh"
