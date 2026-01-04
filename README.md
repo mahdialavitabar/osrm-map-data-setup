@@ -1,6 +1,7 @@
 # 🗺️ OSRM Map Data Setup
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/osrm-map-data-setup.svg)](https://www.npmjs.com/package/osrm-map-data-setup)
 [![Bash](https://img.shields.io/badge/bash-5.0%2B-green.svg)](https://www.gnu.org/software/bash/)
 [![Docker](https://img.shields.io/badge/docker-required-blue.svg)](https://www.docker.com/)
 
@@ -47,6 +48,21 @@ Perfect for developers building route optimization, navigation apps, logistics p
 
 ### Installation
 
+#### Option 1: NPM (Recommended)
+
+```bash
+# Install globally
+npm install -g osrm-map-data-setup
+
+# Run the interactive menu
+osrm-setup
+
+# Or with arguments
+osrm-setup germany --profile car
+```
+
+#### Option 2: Clone Repository
+
 ```bash
 # Clone the repository
 git clone https://github.com/mahdialavitabar/osrm-map-data-setup.git
@@ -57,6 +73,29 @@ chmod +x setup-osrm.sh
 
 # Run the interactive menu
 ./setup-osrm.sh
+```
+
+#### Option 3: Programmatic API (Node.js)
+
+```javascript
+const osrm = require('osrm-map-data-setup');
+
+// Download and process Germany
+await osrm.setup({
+  regions: ['germany'],
+  dir: './osrm-data',
+  profile: 'car',
+});
+
+// Download only (no processing)
+await osrm.download(['france', 'spain'], './osrm-data');
+
+// Process existing files only
+await osrm.process(['germany'], { profile: 'bicycle' });
+
+// Check dependencies
+const deps = osrm.checkDependencies();
+console.log(deps); // { bash: true, docker: true, curl: true, wget: false }
 ```
 
 ### Usage

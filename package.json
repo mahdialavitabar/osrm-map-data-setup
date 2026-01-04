@@ -1,0 +1,48 @@
+{
+  "name": "osrm-map-data-setup",
+  "version": "1.0.0",
+  "description": "Interactive CLI tool to download and process OpenStreetMap data for OSRM routing services",
+  "main": "index.js",
+  "bin": {
+    "osrm-setup": "./bin/osrm-setup.js"
+  },
+  "scripts": {
+    "test": "bash test.sh"
+  },
+  "keywords": [
+    "osrm",
+    "openstreetmap",
+    "osm",
+    "routing",
+    "maps",
+    "geofabrik",
+    "docker",
+    "cli",
+    "navigation",
+    "directions",
+    "route-planning"
+  ],
+  "author": "Mahdi Alavitabar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahdialavitabar/osrm-map-data-setup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahdialavitabar/osrm-map-data-setup/issues"
+  },
+  "homepage": "https://github.com/mahdialavitabar/osrm-map-data-setup#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "files": [
+    "bin/",
+    "setup-osrm.sh",
+    "README.md",
+    "LICENSE"
+  ]
+}
