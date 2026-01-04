@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  # OSRM Routing Service
+  osrm:
+    image: osrm/osrm-backend:latest
+    container_name: osrm-routing
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount the osrm directory created by setup-osrm.sh
+      - ../osrm:/data
+    # Use MLD (Multi-Level Dijkstra) algorithm for best performance
+    command: osrm-routed --algorithm mld /data/map.osrm
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:5000/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - osrm-network
+
+  # Optional: Frontend UI for testing routes
+  osrm-frontend:
+    image: osrm/osrm-frontend:latest
+    container_name: osrm-frontend
+    ports:
+      - "9966:9966"
+    environment:
+      - OSRM_BACKEND=http://osrm:5000
+    depends_on:
+      - osrm
+    restart: unless-stopped
+    networks:
+      - osrm-network
+
+networks:
+  osrm-network:
+    driver: bridge
+# Usage:
+# 1. Run setup-osrm.sh first to download and process map data
+# 2. Start services: docker-compose up -d
+# 3. Access routing API: http://localhost:5000
+# 4. Access frontend UI: http://localhost:9966
+# 5. Stop services: docker-compose down

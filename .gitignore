@@ -1,0 +1,45 @@
+# OSRM generated files
+osrm/
+*.osm
+*.osm.pbf
+*.osrm
+*.osrm.*
+
+# Download logs
+*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+.dockerignore
+
+# Backup files
+*.bak
+*.backup
